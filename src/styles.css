@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+.labelPlusDonnee {
+  display: flex;
+  flex-direction: row;
+}
+
+input.active {
+  background-color: rgb(221, 221, 221);
+}
+
+input:not(.active) {
+  background-color: rgb(116, 116, 116);
+  color: white;
+}

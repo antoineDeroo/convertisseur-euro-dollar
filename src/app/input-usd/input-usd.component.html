@@ -1,0 +1,9 @@
+<div>
+  <input  id="usd"
+          type="number"
+          [(ngModel)]="val"
+          [ngClass]="{'active': this.isActive}"
+          (ngModelChange)="onValueChange()">
+  <label for="eur">USD</label>
+</div>
+
