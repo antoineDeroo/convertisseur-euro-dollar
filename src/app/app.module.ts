@@ -10,6 +10,7 @@ import { InputEurComponent } from './input-eur/input-eur.component';
 import { InputUsdComponent } from './input-usd/input-usd.component';
 import { SwitchComponent } from './switch/switch.component';
 import { ReadonlyDirective } from './directives/readonly/readonly.directive';
+import { HistoriqueComponent } from './historique/historique.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ReadonlyDirective } from './directives/readonly/readonly.directive';
     InputUsdComponent,
     SwitchComponent,
     ReadonlyDirective,
+    HistoriqueComponent,
   ],
   imports: [
     BrowserModule,
