@@ -1,3 +1,5 @@
+<label for="taux">Taux de conversion EUR vers USD : </label>
 <input  id="taux"
-        [(ngModel)]="val"
-        (ngModelChange)="onValueChange()">
+        [ngModel]="service.taux | number:'0.0-2'"
+        (ngModelChange)="service.taux=$event"
+        [attr.readonly]="true">

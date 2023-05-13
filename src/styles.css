@@ -1,7 +1,4 @@
-.labelPlusDonnee {
-  display: flex;
-  flex-direction: row;
-}
+
 
 input.active {
   background-color: rgb(221, 221, 221);

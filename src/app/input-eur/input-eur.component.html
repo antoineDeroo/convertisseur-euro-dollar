@@ -1,9 +1,9 @@
-<div>
-  <input  id="eur"
-          type="number"
-          [ngClass]="{'active': this.isActive}"
-          [(ngModel)]="val"
-          (ngModelChange)="onValueChange()">
-  <label for="eur">EUR</label>
-</div>
+<input  type="number"
+        step="any"
+        [ngModel]="service.eur | number:'0.0-2'"
+        (ngModelChange)="service.eur=$event"
+        [ngClass]="{'active': !service.dollarSelected}"
+        [appReadonly]="service.dollarSelected">
+<label for="eur">€</label>
+
 

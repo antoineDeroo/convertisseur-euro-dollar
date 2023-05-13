@@ -1,1 +1,14 @@
-<input id="taux-fixe">
+<div style="display: flex; flex-direction: row;">
+  <label for="taux-fixe">Taux de conversion personalisé : </label>
+  <input id="taux-fixe"
+        type="number"
+        ngClass="active"
+        [(ngModel)]="service.tauxFixe">
+  <label for="taux-fixe"
+          [ngStyle]="{display: service.tauxFixeActif ? 'none' : 'block', color: 'red'}">
+  Inactif
+  </label>
+</div>
+<p>Pour être actif, le taux personalisé ne doit pas varier de plus de {{ variationMax }}% du taux réel.</p>
+
+

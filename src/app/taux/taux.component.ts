@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { CalculService } from '../calcul.service';
 
 @Component({
@@ -6,19 +6,17 @@ import { CalculService } from '../calcul.service';
   templateUrl: './taux.component.html',
   styleUrls: ['./taux.component.css']
 })
-export class TauxComponent implements OnInit{
+export class TauxComponent implements AfterViewInit {
 
-  protected val: number = 1.1;
-
-  constructor(private service: CalculService){
-
+  constructor(protected service: CalculService){
+    console.log("taux");
   }
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
       setInterval(() => {
-        this.val = Math.random() > 0.5 ? this.val + 0.05 : this.val - 0.05;
+        this.service.taux += (2*Math.random()-1) * CalculService.VARIATION_MAX_POUR_TAUX_REEL;
       },3000);
   }
-  onValueChange(): void {
-    this.service.setTaux(this.val);
+  onClickButton() {
+    this.service.taux++;
   }
 }
