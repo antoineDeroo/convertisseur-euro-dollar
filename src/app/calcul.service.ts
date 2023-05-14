@@ -82,8 +82,7 @@ export class CalculService {
       });
     }
     if(this.historique.length > 5)
-      this.historique.splice(1,1);
-    console.log(this.historique);
+      this.historique.splice(0,1);
   }
   calculerTauxActif(): boolean { // Returns true si tauxActif a changé.
     const ancienTaux = this.tauxActif;
@@ -100,7 +99,6 @@ export class CalculService {
     } else {
       this.tauxActif = tauxNum;
     }
-    console.log({actif:this.tauxActif,ancien:ancienTaux});
     return this.tauxActif != ancienTaux;
   }
 }

@@ -3,9 +3,7 @@
         type="number"
         step="0.01"
         [ngModel]="getValueFromService()"
-        (ngModelChange)="sendValueToService($event)"
-        [value]="getValueFromService()"
-        (input)="onInputChange($event)"
+        (ngModelChange)="sendValueToService()"
         [attr.readonly]="true">
 
 

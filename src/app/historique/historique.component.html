@@ -1,31 +1,31 @@
-<table>
-  <thead>
-    <tr>
-      <th>Taux réel</th>
-      <th>Taux saisi</th>
-      <th>Valeur initiale</th>
-      <th>Valeur calculée</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let ligne of service.historique">
-      <td [ngClass]="{'vert': !ligne.tauxFixeActif}">
-        {{ligne.tauxReel.toFixed(2)}}
-      </td>
-      <td [ngClass]="{'vert': ligne.tauxFixeActif}">
-        {{ligne.tauxSaisi.toFixed(2)}}
-      </td>
-      <td>
-        {{ligne.valeurInitiale.toFixed(2)}} {{ligne.valeurInitialeEnEuro ? '€' : '$'}}
-      </td>
-      <td>
-        {{ligne.valeurCalculee.toFixed(2)}} {{ligne.valeurInitialeEnEuro ? '$' : '€'}}
-      </td>
-    </tr>
-  </tbody>
-
-</table>
-<div>
-  Dans l'historique, le taux surligné en <span [ngClass]="'vert'">vert</span> est le taux utilisé pour la conversion.
-
+<div *ngIf="service.historique.length">
+  <table>
+    <thead>
+      <tr>
+        <th>Taux réel</th>
+        <th>Taux saisi</th>
+        <th>Valeur initiale</th>
+        <th>Valeur calculée</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ligne of service.historique">
+        <td [ngClass]="{'vert': !ligne.tauxFixeActif}">
+          {{ligne.tauxReel.toFixed(2)}}
+        </td>
+        <td [ngClass]="{'vert': ligne.tauxFixeActif}">
+          {{ligne.tauxSaisi.toFixed(2)}}
+        </td>
+        <td>
+          {{ligne.valeurInitiale.toFixed(2)}} {{ligne.valeurInitialeEnEuro ? '€' : '$'}}
+        </td>
+        <td>
+          {{ligne.valeurCalculee.toFixed(2)}} {{ligne.valeurInitialeEnEuro ? '$' : '€'}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div>
+    Dans l'historique, le taux surligné en <span [ngClass]="'vert'">vert</span> est le taux utilisé pour la conversion.
+  </div>
 </div>

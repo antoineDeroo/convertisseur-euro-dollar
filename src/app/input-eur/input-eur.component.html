@@ -1,10 +1,8 @@
 <input  id="eur"
         type="number"
-        [ngModel]="getValueFromService()"
-        (ngModelChange)="sendValueToService($event)"
         [ngClass]="{'active': !service.dollarSelected}"
         [value]="getValueFromService()"
-        (input)="onInputChange($event)"
+        (input)="onInput($event)"
         [appReadonly]="service.dollarSelected">
 <label for="eur"> €</label>
 
