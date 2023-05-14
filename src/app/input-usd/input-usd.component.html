@@ -1,8 +1,10 @@
-<input  type="number"
-        step="any"
-        [ngModel]="service.usd | number:'0.0-2'"
-        (ngModelChange)="service.usd=$event"
+<input  id="usd"
+        type="number"
+        [ngModel]="getValueFromService()"
+        (ngModelChange)="sendValueToService($event)"
         [ngClass]="{'active': service.dollarSelected}"
+        [value]="getValueFromService()"
+        (input)="onInputChange($event)"
         [appReadonly]="!service.dollarSelected">
-<label for="eur"> $</label>
+<label for="usd"> $</label>
 

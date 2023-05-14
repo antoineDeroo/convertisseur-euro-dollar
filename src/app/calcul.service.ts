@@ -1,30 +1,25 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { LigneHistorique } from './historique/ligne-historique';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CalculService implements OnInit {
+export class CalculService {
 
-  static readonly ECART_RELATIF_MAX_ENTRE_TAUX_FIXE_ET_REEL: number = 1;
+  static readonly ECART_RELATIF_MAX_ENTRE_TAUX_FIXE_ET_REEL: number = 0.02;
   static readonly VARIATION_MAX_POUR_TAUX_REEL: number = 0.05;
 
   dollarSelected: boolean = false;
   tauxFixeActif: boolean = false;
-  _taux: number = 1.1;
-  _tauxFixe: string = "";
-  _eur: number = 0;
-  _usd: number = 0;
+  private _taux: number = 1.1;
+  private _tauxFixe: string = "0";
+  private _eur: number = 0;
+  private _usd: number = 0;
 
-  private tauxActif: number = -1;
+  private tauxActif: number = this._taux;
 
   historique: LigneHistorique[] = [];
 
-  constructor() {}
-
-  ngOnInit() {
-      this.calculerTauxActif();
-  }
   setDollarSelected(b: boolean) {
     this.dollarSelected = b;
   }
@@ -68,22 +63,22 @@ export class CalculService implements OnInit {
     if(fromDollar){
       this._eur = this.usd / this.tauxActif;
       this.historique.push({
-        tauxFixeActif: this.tauxFixeActif,
-        tauxReel:this.taux,
-        tauxSaisi:Number(this.tauxFixe),
-        valeurInitiale:this.usd,
-        valeurCalculee:this.eur,
-        valeurInitialeEnEuro:false
+        tauxFixeActif:        this.tauxFixeActif,
+        tauxReel:             Number(this.taux),
+        tauxSaisi:            Number(this.tauxFixe),
+        valeurInitiale:       Number(this.usd),
+        valeurCalculee:       Number(this.eur),
+        valeurInitialeEnEuro: false
       });
     } else {
       this._usd =  this.eur * this.tauxActif;
       this.historique.push({
-        tauxFixeActif: this.tauxFixeActif,
-        tauxReel:this.taux,
-        tauxSaisi:Number(this.tauxFixe),
-        valeurInitiale:this.eur,
-        valeurCalculee:this.usd,
-        valeurInitialeEnEuro:true
+        tauxFixeActif:        this.tauxFixeActif,
+        tauxReel:             Number(this.taux),
+        tauxSaisi:            Number(this.tauxFixe),
+        valeurInitiale:       Number(this.eur),
+        valeurCalculee:       Number(this.usd),
+        valeurInitialeEnEuro: true
       });
     }
     if(this.historique.length > 5)
@@ -92,17 +87,18 @@ export class CalculService implements OnInit {
   }
   calculerTauxActif(): boolean { // Returns true si tauxActif a changé.
     const ancienTaux = this.tauxActif;
+    const tauxNum = Number(this.taux);
     this.tauxFixeActif = false;
     if(this.tauxFixe){
       const tauxFixeNum = Number(this.tauxFixe);
-      if(tauxFixeNum >= (1-CalculService.ECART_RELATIF_MAX_ENTRE_TAUX_FIXE_ET_REEL)*this.taux && tauxFixeNum <= (1+CalculService.ECART_RELATIF_MAX_ENTRE_TAUX_FIXE_ET_REEL)*this.taux) {
+      if(tauxFixeNum >= (1-CalculService.ECART_RELATIF_MAX_ENTRE_TAUX_FIXE_ET_REEL)*tauxNum && tauxFixeNum <= (1+CalculService.ECART_RELATIF_MAX_ENTRE_TAUX_FIXE_ET_REEL)*tauxNum) {
         this.tauxActif = tauxFixeNum;
         this.tauxFixeActif = true;
       } else {
-        this.tauxActif = this.taux;
+        this.tauxActif = tauxNum;
       }
     } else {
-      this.tauxActif = this.taux;
+      this.tauxActif = tauxNum;
     }
     console.log({actif:this.tauxActif,ancien:ancienTaux});
     return this.tauxActif != ancienTaux;

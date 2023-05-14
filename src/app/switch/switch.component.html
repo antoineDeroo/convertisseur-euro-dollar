@@ -1,4 +1,5 @@
-<select [(ngModel)]="val" (ngModelChange)="onValueChange()">
+<label for="switch">Valeur d'entrée pour la conversion : </label>
+<select id="switch" [(ngModel)]="val" (ngModelChange)="onValueChange()">
   <option value="eur">EUR</option>
   <option value="usd">USD</option>
 </select>
