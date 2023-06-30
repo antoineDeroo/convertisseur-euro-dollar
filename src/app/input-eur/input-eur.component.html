@@ -3,7 +3,7 @@
         [ngClass]="{'active': !service.dollarSelected}"
         [value]="getValueFromService()"
         (input)="onInput($event)"
-        [appReadonly]="service.dollarSelected">
+		[readonly]="service.dollarSelected">
 <label for="eur"> €</label>
 
 

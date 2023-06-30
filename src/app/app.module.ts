@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { InputEurComponent } from './input-eur/input-eur.component';
 import { InputUsdComponent } from './input-usd/input-usd.component';
 import { SwitchComponent } from './switch/switch.component';
-import { ReadonlyDirective } from './directives/readonly/readonly.directive';
 import { HistoriqueComponent } from './historique/historique.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { HistoriqueComponent } from './historique/historique.component';
     InputEurComponent,
     InputUsdComponent,
     SwitchComponent,
-    ReadonlyDirective,
     HistoriqueComponent,
   ],
   imports: [
